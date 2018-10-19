@@ -18,6 +18,7 @@ namespace TaskManager.BL
             try
             {
                 tasks.ParentTask = !string.IsNullOrEmpty(tasks.ParentTask) ? tasks.ParentTask : string.Empty;
+                tasks.TaskName = !string.IsNullOrEmpty(tasks.TaskName) ? tasks.TaskName : string.Empty;
                 db.Tasks.Add(tasks);
                 db.SaveChanges();
             }
@@ -70,7 +71,8 @@ namespace TaskManager.BL
                     query.StartDate = tasks.StartDate;
                     query.EndDate = tasks.EndDate;
                     query.Priority = tasks.Priority;
-                    query.TaskName = tasks.TaskName;
+                    query.TaskName = !string.IsNullOrEmpty(tasks.TaskName)
+                        ? tasks.TaskName : string.Empty; ;
 
                     db.Entry(query).State = EntityState.Modified;
                     db.SaveChanges();
