@@ -25,7 +25,6 @@ namespace TaskManager.WebAPI.Controllers
         [ResponseType(typeof(TaskTable))]
         [Route("api/GetTask/{id}")]
         public IHttpActionResult GetTasks(int id)
-
         {
             List<TaskTable> tasks = task.GetAllTask().Where(i => i.TaskId.Equals(id)).ToList();
             if (tasks == null)
